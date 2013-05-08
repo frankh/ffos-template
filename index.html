@@ -5,6 +5,11 @@
 		<script src="js/lib/jquery-1.7.2.js"></script>
 		<script>
 			$(document).ready(function() {
+
+				navigator.mozSetMessageHandler("alarm", function (message) {
+					alert("alarm fired: " + JSON.stringify(message)); 
+				});
+						
 				$('#install').click(function() {
 					request = window.navigator.mozApps.install('http://frankh.github.io/ffos-template/manifest.webapp');
 					request.onsuccess = function () {
@@ -35,10 +40,6 @@
 						request = navigator.mozAlarms.add(date, "honorTimezone", {foo:"bar2"});
 						request.onsuccess = function(e) { console.log('set'); };
 						request.onerror = function(e) { alert(e.target.error.name) };
-
-						navigator.mozSetMessageHandler("alarm", function (message) {
-							alert("alarm fired: " + JSON.stringify(message)); 
-						});
 
 						request = navigator.mozAlarms.getAll();
 						request.onsuccess = function (e) { console.log(JSON.stringify(e.target.result)); };
