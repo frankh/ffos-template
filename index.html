@@ -41,7 +41,7 @@
 						});
 
 						request = navigator.mozAlarms.getAll();
-						request.onsuccess = function (e) { console.dir(e.target.result); };
+						request.onsuccess = function (e) { console.log(JSON.stringify(e.target.result)); };
 						request.onerror = function (e) { alert(e.target.error.name); };
 						};
 
