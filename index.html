@@ -32,7 +32,7 @@
 						request.onsuccess = function(e) { console.log('set'); };
 						request.onerror = function(e) { alert(e.target.error.name) };
 
-						request = navigator.mozAlarms.add(date, "honoreTimezone", {foo:"bar2"});
+						request = navigator.mozAlarms.add(date, "honorTimezone", {foo:"bar2"});
 						request.onsuccess = function(e) { console.log('set'); };
 						request.onerror = function(e) { alert(e.target.error.name) };
 
