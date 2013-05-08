@@ -11,7 +11,7 @@
   },
   "default_locale": "en",
   "messages": [
-    { "alarm": "/ffos-template/alarm.html" }
+    { "alarm": "/ffos-template/index.html" }
   ],
   "permissions": {
     "alarms": {

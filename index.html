@@ -15,9 +15,20 @@
 						// Display the error information from the DOMError object
 						alert('Install failed, error: ' + this.error.name);
 					};
+				});
 
-					$('.info').html(navigator.mozCameras);
-				})
+				$('#set-alarm').click(function() {
+					var date = new Date();
+					date.setSeconds(date.getSeconds() + 10);
+
+					var request = navigator.mozAlarms.add(date, "honorTimezone", {foo:"bar"});
+					request.onsuccess = function(e) { alert(e) };
+					request.onerror = function(e) { alert(e.target.error.name) };
+					
+					navigator.mozSetMessageHandler("alarm", function (message) {
+						alert("alarm fired: " + JSON.stringify(message)); 
+					});
+				});
 
 			})
 		</script>
@@ -25,6 +36,6 @@
 	<body>
 		<h1>Hello, World!</h1>
 		<button id='install'>Install</button>
-		cams: <div class='info'>error</div>
+		<button id='set-alarm'>Alarm</button>
 	</body>
 </html>
