@@ -1,0 +1,13 @@
+{
+  "name": "Template",
+  "description": "Webapp manifest template",
+  "launch_path": "/",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Frank",
+    "url": "http://shawabawa.com"
+  },
+  "default_locale": "en"
+}

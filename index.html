@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="js/lib/jQuery-1.7.2.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#install').click(function() {
+					request = window.navigator.mozapps.install('/template.webapp');
+					request.onsuccess = function () {
+						// Save the App object that is returned
+						var appRecord = this.result;
+						alert('Installation successful!');
+					};
+					request.onerror = function () {
+						// Display the error information from the DOMError object
+						alert('Install failed, error: ' + this.error.name);
+					};
+				})
+
+			})
+		</script>
+	</head>
+	<body>
+		<h1>Hello, World!</h1>
+		<button id='install'>Install</button>
+	</body>
+</html>
