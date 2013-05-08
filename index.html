@@ -5,7 +5,7 @@
 		<script>
 			$(document).ready(function() {
 				$('#install').click(function() {
-					request = window.navigator.mozApps.install('http://frankh.github.com/ffos-template/template.webapp');
+					request = window.navigator.mozApps.install('http://frankh.github.com/ffos-template/manifest.webapp');
 					request.onsuccess = function () {
 						// Save the App object that is returned
 						var appRecord = this.result;
