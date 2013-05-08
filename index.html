@@ -29,7 +29,9 @@
 						alert("alarm fired: " + JSON.stringify(message)); 
 					});
 				});
-
+				window.onerror = function(msg, url, line) {
+					alert("Error: " + msg + "\nurl: " + url + "\nline #: " + line);
+				};
 			})
 		</script>
 	</head>
