@@ -19,7 +19,7 @@
 
 				$('#set-alarm').click(function() {
 					var date = new Date();
-					date.setSeconds(Math.min(date.getSeconds() + 3, 60));
+					date.setSeconds(Math.min(date.getSeconds() + 5, 60));
 
 					var request = navigator.mozAlarms.getAll();
 					request.onsuccess = function (e) { 
@@ -28,19 +28,12 @@
 						});
 
 
-						request = navigator.mozAlarms.add(new Date("May 9, 2013 01:45:00"), "ignoreTimezone", {foo:"bar1"});
+						request = navigator.mozAlarms.add(date, "ignoreTimezone", {foo:"bar1"});
 						request.onsuccess = function(e) { console.log('set'); };
 						request.onerror = function(e) { alert(e.target.error.name) };
-						request = navigator.mozAlarms.add(new Date("May 9, 2013 00:45:00"), "ignoreTimezone", {foo:"bar2"});
+						request = navigator.mozAlarms.add(date, "honoreTimezone", {foo:"bar2"});
 						request.onsuccess = function(e) { console.log('set'); };
 						request.onerror = function(e) { alert(e.target.error.name) };
-						request = navigator.mozAlarms.add(new Date("May 9, 2013 01:45:00"), "honorTimezone", {foo:"bar3"});
-						request.onsuccess = function(e) { console.log('set'); };
-						request.onerror = function(e) { alert(e.target.error.name) };
-						request = navigator.mozAlarms.add(new Date("May 9, 2013 00:45:00"), "honorTimezone", {foo:"bar4"});
-						request.onsuccess = function(e) { console.log('set'); };
-						request.onerror = function(e) { alert(e.target.error.name) };
-						
 						navigator.mozSetMessageHandler("alarm", function (message) {
 							alert("alarm fired: " + JSON.stringify(message)); 
 						});
