@@ -1,21 +1,21 @@
 {
   "name": "Template",
   "description": "Webapp manifest template",
-  "launch_path": "/ffos-template",
+  "launch_path": "/index.html",
   "icons": {
-    "128": "/ffos-template/img/icon-128.png"
+    "128": "/img/icon-128.png"
   },
   "developer": {
     "name": "shawabawa",
     "url": "http://shawabawa.com"
   },
-  "default_locale": "en",
-  "messages": [
-    { "alarm": "/ffos-template/index.html" }
-  ],
   "permissions": {
     "alarms": {
       "description": "Required to schedule notifications"
     }
-  }
+  },
+  "default_locale": "en",
+  "messages": [
+    { "alarm": "/index.html" }
+  ]
 }

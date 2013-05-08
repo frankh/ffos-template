@@ -5,7 +5,7 @@
 		<script>
 			$(document).ready(function() {
 				$('#install').click(function() {
-					request = window.navigator.mozApps.install('http://frankh.github.com/ffos-template/manifest.webapp');
+					request = window.navigator.mozApps.install('/manifest.webapp');
 					request.onsuccess = function () {
 						// Save the App object that is returned
 						var appRecord = this.result;
@@ -19,15 +19,37 @@
 
 				$('#set-alarm').click(function() {
 					var date = new Date();
-					date.setSeconds(date.getSeconds() + 10);
+					date.setSeconds(Math.min(date.getSeconds() + 3, 60));
 
-					var request = navigator.mozAlarms.add(date, "honorTimezone", {foo:"bar"});
-					request.onsuccess = function(e) { alert(e) };
-					request.onerror = function(e) { alert(e.target.error.name) };
-					
-					navigator.mozSetMessageHandler("alarm", function (message) {
-						alert("alarm fired: " + JSON.stringify(message)); 
-					});
+					var request = navigator.mozAlarms.getAll();
+					request.onsuccess = function (e) { 
+						$.each(e.target.result, function() {
+							navigator.mozAlarms.remove(this.id);
+						});
+
+
+						request = navigator.mozAlarms.add(new Date("May 9, 2013 01:45:00"), "ignoreTimezone", {foo:"bar1"});
+						request.onsuccess = function(e) { console.log('set'); };
+						request.onerror = function(e) { alert(e.target.error.name) };
+						request = navigator.mozAlarms.add(new Date("May 9, 2013 00:45:00"), "ignoreTimezone", {foo:"bar2"});
+						request.onsuccess = function(e) { console.log('set'); };
+						request.onerror = function(e) { alert(e.target.error.name) };
+						request = navigator.mozAlarms.add(new Date("May 9, 2013 01:45:00"), "honorTimezone", {foo:"bar3"});
+						request.onsuccess = function(e) { console.log('set'); };
+						request.onerror = function(e) { alert(e.target.error.name) };
+						request = navigator.mozAlarms.add(new Date("May 9, 2013 00:45:00"), "honorTimezone", {foo:"bar4"});
+						request.onsuccess = function(e) { console.log('set'); };
+						request.onerror = function(e) { alert(e.target.error.name) };
+						
+						navigator.mozSetMessageHandler("alarm", function (message) {
+							alert("alarm fired: " + JSON.stringify(message)); 
+						});
+
+						request = navigator.mozAlarms.getAll();
+						request.onsuccess = function (e) { alert(JSON.stringify(e.target.result)); };
+						request.onerror = function (e) { alert(e.target.error.name); };
+						};
+
 				});
 				window.onerror = function(msg, url, line) {
 					alert("Error: " + msg + "\nurl: " + url + "\nline #: " + line);
