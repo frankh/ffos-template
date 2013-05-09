@@ -9,7 +9,7 @@
 				navigator.mozSetMessageHandler("alarm", function (message) {
 					alert("alarm fired: " + JSON.stringify(message)); 
 				});
-						
+
 				$('#install').click(function() {
 					request = window.navigator.mozApps.install('http://frankh.github.io/ffos-template/manifest.webapp');
 					request.onsuccess = function () {
@@ -24,6 +24,7 @@
 				});
 
 				$('#set-alarm').click(function() {
+					console.log(navigator.mozHasPendingMessage("alarm"));
 					var date = new Date();
 					date.setSeconds(Math.min(date.getSeconds() + 5, 60));
 
