@@ -7,6 +7,13 @@
 			$(document).ready(function() {
 
 				navigator.mozSetMessageHandler("alarm", function (message) {
+					var protocol = window.location.protocol;
+				    var host = window.location.host;
+				    var childwindow =
+				        window.open(protocol + '//' + host + '/index.html',
+				                    'ring_screen', 'attention');
+
+				    console.log("alarm fired");
 					alert("alarm fired: " + JSON.stringify(message)); 
 				});
 
